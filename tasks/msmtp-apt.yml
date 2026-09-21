@@ -1,0 +1,27 @@
+---
+- tags: [msmtp-apt]
+  block:
+
+  # apt
+  - name: Install mail packages
+    when: true
+    become: true
+    ansible.builtin.apt:
+      state: present
+      name:
+      - mailutils
+      - msmtp
+      - msmtp-mta
+      - bsd-mailx
+
+  # remove other mtas
+  - name: Remove other MTAs
+    become: true
+    ansible.builtin.apt:
+      state: absent
+      autoremove: true
+      purge: true
+      name:
+      - exim4*
+      - postfix*
+      - sendmail*

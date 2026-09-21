@@ -8,71 +8,13 @@
   - name: Assertions for role msmtp
     ansible.builtin.assert:
       that:
-        - msmtp_msmtprc_template != None
+      - msmtp_msmtprc_template != None
 
   # apt
-  - name: Install mail packages
-    when: true
-    become: true
-    ansible.builtin.apt:
-      state: present
-      name:
-      - mailutils
-      - msmtp
-      - msmtp-mta
-      - bsd-mailx
+  - ansible.builtin.import_tasks: msmtp-apt.yml
 
-  # remove other mtas
-  - name: Remove other MTAs
-    become: true
-    ansible.builtin.apt:
-      state: absent
-      autoremove: true
-      purge: true
-      name:
-      - exim4*
-      - postfix*
-      - sendmail*
+  # config
+  - ansible.builtin.import_tasks: msmtp-config.yml
 
-  # template msmtprc
-  - name: Template msmtprc
-    become: true
-    notify: Restart msmtpd.service
-    ansible.builtin.template:
-      src: "{{ msmtp_msmtprc_template }}"
-      dest: /etc/msmtprc
-      owner: root
-      group: root
-      mode: "{{ msmtp_msmtprc_mode }}"
-
-  # cp aliases
-  - when: msmtp_aliases != None
-    name: Copy aliases
-    become: true
-    notify: Restart msmtpd.service
-    ansible.builtin.copy:
-      src: "{{ msmtp_aliases }}"
-      dest: /etc/aliases
-      owner: root
-      group: root
-      mode: "u=rw,g=r,o=r"
-
-  # cp mail.rc
-  - when: msmtp_mailrc != None
-    name: Copy {{ msmtp_mailrc }}
-    become: true
-    notify: Restart msmtpd.service
-    ansible.builtin.copy:
-      src: "{{ msmtp_mailrc }}"
-      dest: /etc/mail.rc
-      owner: root
-      group: root
-      mode: "u=rw,g=r,o=r"
-
-  # start/enable service
-  - name: Start/Enable msmtpd.service
-    become: true
-    ansible.builtin.systemd_service:
-      name: msmtpd.service
-      state: started
-      enabled: true
+  # service
+  - ansible.builtin.import_tasks: msmtp-service.yml

@@ -1,3 +1,10 @@
+ABOUT
+=====
+
+A radically simple Ansible Role.
+- System: Debian 13
+- State: probably production
+
 TO DO
 =====
 

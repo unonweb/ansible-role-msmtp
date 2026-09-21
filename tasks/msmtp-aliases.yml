@@ -12,7 +12,7 @@
       - msmtp_aliases is mapping
 
   # template
-  - name: Template aliases
+  - name: Template /etc/aliases
     become: true
     ansible.builtin.template:
       src: aliases.j2

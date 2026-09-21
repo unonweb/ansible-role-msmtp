@@ -3,7 +3,7 @@
   block:
 
   # start/enable service
-  - name: Enable/Disable msmtpd.service
+  - name: Set enabled {{ msmtp_msmtpd_enabled }} on msmtpd.service
     become: true
     ansible.builtin.systemd_service:
       name: msmtpd.service

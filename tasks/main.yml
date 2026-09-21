@@ -24,7 +24,10 @@
   - ansible.builtin.import_tasks: msmtp-apt.yml
 
   # config
-  - ansible.builtin.import_tasks: msmtp-config.yml
+  - ansible.builtin.import_tasks: msmtp-msmtprc.yml
 
   # service
-  - ansible.builtin.import_tasks: msmtp-service.yml
+  - ansible.builtin.import_tasks: msmtp-msmtpd.yml
+
+  # aliases
+  - ansible.builtin.import_tasks: msmtp-aliases.yml

@@ -1,8 +1,4 @@
 ---
-- name: Send testmail
-  become: true
-  shell: echo "Wenn diese Mail ankommt, funktioniert der Mailversand. :)" | mail -s "Testmail von {{ ansible_hostname }}" {{ admin_mail }}
-
 - name: Restart msmtpd.service
   become: true
   ansible.builtin.systemd_service:

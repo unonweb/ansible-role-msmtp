@@ -1,6 +1,6 @@
 ---
-msmtp_mailrc: # -> /etc/mail.rc
-msmtp_aliases: # -> /etc/aliases
+# MSMTPRC
+# -------
 msmtp_msmtprc_template: msmtprc.j2 # -> /etc/msmtprc
 msmtp_msmtprc_mode: "u=rw,g=r,o=r"
 msmtp_msmtprc_default_account:
@@ -14,3 +14,13 @@ msmtp_msmtprc_accounts: [] # list of dicionaries
 # user:
 # from:
 # password:
+
+# ALIASES
+# -------
+msmtp_aliases: [] # list of dicionaries -> /etc/aliases
+# mailer-daemon: "postmaster"
+# postmaster: "root"
+
+# MSMTPD
+# ------
+msmtp_msmtpd_enabled: false

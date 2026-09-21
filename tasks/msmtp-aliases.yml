@@ -1,0 +1,22 @@
+---
+- tags: [msmtp-aliases]
+  when: msmtp_aliases != None
+  block:
+
+  # assert
+  - name: Assertions for msmtp-aliases
+    ansible.builtin.assert:
+      that:
+      - msmtp_aliases is not string 
+      - msmtp_aliases is iterable 
+      - msmtp_aliases is mapping
+
+  # template
+  - name: Template aliases
+    become: true
+    ansible.builtin.template:
+      src: aliases.j2
+      dest: /etc/aliases
+      owner: root
+      group: root
+      mode: "u=rw,g=r,o=r"

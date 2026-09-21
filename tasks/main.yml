@@ -10,6 +10,16 @@
       that:
       - msmtp_msmtprc_template != None
 
+  # mail.rc
+  - name: Write /etc/mail.rc 
+    become: true
+    ansible.builtin.copy:
+      content: "set sendmail=/usr/bin/msmtp"
+      dest: /etc/mail.rc
+      owner: root
+      group: root
+      mode: "u=rw,g=r,o=r"
+
   # apt
   - ansible.builtin.import_tasks: msmtp-apt.yml
 

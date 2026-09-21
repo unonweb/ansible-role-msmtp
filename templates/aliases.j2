@@ -1,0 +1,5 @@
+# /etc/aliases
+{# currently not used #}
+{% for alias, target in msmtp_aliases.items() %}
+{{ alias }}: {{ target }}
+{% endfor %}

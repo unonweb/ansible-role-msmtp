@@ -1,0 +1,13 @@
+---
+- tags: [msmtp-msmtprc]
+  block:
+
+  # template msmtprc
+  - name: Template msmtprc
+    become: true
+    ansible.builtin.template:
+      src: "{{ msmtp_msmtprc_template }}"
+      dest: /etc/msmtprc
+      owner: root
+      group: root
+      mode: "{{ msmtp_msmtprc_mode }}"

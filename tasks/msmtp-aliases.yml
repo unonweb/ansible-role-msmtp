@@ -1,5 +1,5 @@
 ---
-- tags: [msmtp-aliases]
+- tags: [role-msmtp-aliases]
   when: msmtp_aliases != None
   block:
 

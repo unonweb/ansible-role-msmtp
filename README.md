@@ -14,8 +14,10 @@ Check variables, especially if
 NOTES
 =====
 
+test
+----
+
 ```sh
-# test:
 echo -e "Test Body" | sudo mail -s "Test subject" "unonweb-report@freenet.de"
 ```
 

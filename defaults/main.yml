@@ -17,7 +17,8 @@ msmtp_msmtprc_accounts: [] # list of dicionaries
 
 # ALIASES
 # -------
-msmtp_aliases: [] # list of dicionaries -> /etc/aliases
+msmtp_aliases: {}
+# -> /etc/aliases
 # mailer-daemon: "postmaster"
 # postmaster: "root"
 
